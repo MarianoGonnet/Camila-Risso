@@ -79,7 +79,7 @@ ul { list-style: none; }
     position: sticky;
     top: 0;
     z-index: 1000;
-    padding: 15px 0;
+    padding: 5px 0;
 }
 
 .nav-container {
@@ -95,14 +95,14 @@ ul { list-style: none; }
 }
 
 .logo h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: var(--primary);
-    letter-spacing: 1px;
-    line-height: 1; /* Asegura el centrado vertical perfecto con la imagen */
+    letter-spacing: 4px;
+    line-height: 2; /* Asegura el centrado vertical perfecto con la imagen */
 }
 
 .logo-img {
-    height: 90px; /* Tamaño equilibrado y elegante */
+    height: 150px; /* Tamaño equilibrado y elegante */
     width: auto;
 }
 
