@@ -328,6 +328,32 @@ ul { list-style: none; }
     margin-top: 30px;
 }
 
+/* Página Galería (Grid Moderno) */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    height: 300px; /* Altura fija para uniformidad */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1); /* Efecto Zoom al pasar el mouse */
+}
 
 @media (max-width: 768px) {
     .nav-list {
