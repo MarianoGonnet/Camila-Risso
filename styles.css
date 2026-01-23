@@ -292,6 +292,31 @@ ul { list-style: none; }
 .whatsapp { background: #25D366; }
 
 /* Responsive */
+
+/* Página Sobre Mí Detallada */
+.about-detailed-container {
+    max-width: 900px;
+    text-align: center;
+}
+
+.about-detailed-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 50px;
+    align-items: center;
+    text-align: left;
+    margin-top: 40px;
+}
+
+.about-detailed-text p {
+    margin-bottom: 15px;
+}
+
+.btn-container {
+    margin-top: 30px;
+}
+
+
 @media (max-width: 768px) {
     .nav-list {
         display: none;
@@ -313,4 +338,9 @@ ul { list-style: none; }
     .carousel-slide img { height: 300px; } /* Altura de fotos ajustada para móvil */
     .section { padding: 50px 0; }
     .contact-form { padding: 0 10px; }
+
+    /* Ajustes para página sobre mi detallada */
+    .about-detailed-content {
+        grid-template-columns: 1fr;
+    }
 }
