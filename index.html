@@ -140,11 +140,66 @@
         </div>
     </section>
 
+    <!-- Sección Testimonios -->
+    <section id="testimonios" class="section testimonials">
+        <div class="container">
+            <h3 class="section-title">Lo que dicen mis alumnos</h3>
+            
+            <!-- Testimonios Fijos (Moderados) -->
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p>"El curso de laminados cambió mi forma de cocinar. Las explicaciones de Cami son súper claras y el resultado es increíble."</p>
+                    <div class="author">- María P.</div>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p>"Nunca creí que podría hacer croissants así en mi casa. La técnica de masa madre es un viaje de ida. ¡Gracias!"</p>
+                    <div class="author">- Juan C.</div>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p>"Hice el curso de principiantes y me enamoré. La paciencia y el amor que transmite Cami en cada video es único."</p>
+                    <div class="author">- Sofía L.</div>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
+            </div>
+
+            <!-- Formulario para dejar reseña -->
+            <div class="review-form-container">
+                <h4>¿Hiciste alguno de nuestros cursos?</h4>
+                <p>Dejanos tu experiencia para compartirla con la comunidad.</p>
+                <form action="https://formsubmit.co/gonnet771@gmail.com" method="POST" class="review-form">
+                    <input type="text" name="nombre" placeholder="Tu Nombre" required>
+                    <textarea name="comentario" rows="3" placeholder="Tu experiencia..." required></textarea>
+                    
+                    <div class="rating-css">
+                        <input type="radio" name="rating" id="rating5" value="5" checked><label for="rating5" title="5 estrellas"></label>
+                        <input type="radio" name="rating" id="rating4" value="4"><label for="rating4" title="4 estrellas"></label>
+                        <input type="radio" name="rating" id="rating3" value="3"><label for="rating3" title="3 estrellas"></label>
+                        <input type="radio" name="rating" id="rating2" value="2"><label for="rating2" title="2 estrellas"></label>
+                        <input type="radio" name="rating" id="rating1" value="1"><label for="rating1" title="1 estrella"></label>
+                    </div>
+                    <!-- Redirección después de enviar (opcional, vuelve a la misma página) -->
+                    <input type="hidden" name="_next" value="http://127.0.0.1:5500/index.html">
+                    <input type="hidden" name="_subject" value="Nuevo Testimonio Web Camila Risso">
+                    
+                    <button type="submit" class="btn btn-primary">Enviar Reseña</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Sección Contacto (Formulario) -->
     <section id="contacto" class="section contact">
         <div class="container">
             <h3 class="section-title">Contacto</h3>
-            <form class="contact-form">
+            <form class="contact-form" action="https://formsubmit.co/gonnet771@gmail.com" method="POST">
+                <!-- Configuración interna -->
+                <input type="hidden" name="_next" value="http://127.0.0.1:5500/index.html">
+                <input type="hidden" name="_subject" value="Nueva Consulta Web Camila Risso">
                 <div class="form-group">
                     <label for="nombre">Nombre completo:</label>
                     <input type="text" id="nombre" name="nombre" required>

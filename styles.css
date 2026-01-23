@@ -355,6 +355,92 @@ ul { list-style: none; }
     transform: scale(1.1); /* Efecto Zoom al pasar el mouse */
 }
 
+/* Sección Testimonios */
+.testimonials {
+    background-color: #f9f3ee; /* Un tono ligeramente diferente para separar secciones */
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.testimonial-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    text-align: center;
+    position: relative;
+}
+
+.quote-icon {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
+
+.testimonial-card p {
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.testimonial-card .author {
+    font-weight: bold;
+    color: var(--dark);
+}
+
+.testimonial-card .stars {
+    color: #FFD700; /* Color dorado */
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+/* Formulario de Reseñas */
+.review-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    background: var(--white);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.review-form input, .review-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: var(--font-body);
+}
+
+/* Estrellas Interactivas (CSS Only) */
+.rating-css {
+    display: flex;
+    flex-direction: row-reverse; /* Para que al pasar el mouse se iluminen las anteriores */
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.rating-css input { display: none; }
+.rating-css label {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.rating-css label:before { content: '\2605'; } /* Símbolo de estrella */
+.rating-css input:checked ~ label,
+.rating-css label:hover,
+.rating-css label:hover ~ label {
+    color: #FFD700;
+}
+
 @media (max-width: 768px) {
     .nav-list {
         display: none;
