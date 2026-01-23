@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camila Risso | Pastelería</title>
+    <!-- Fuentes Modernas: Playfair Display (Títulos) y Lato (Texto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Iconos para redes sociales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Hoja de estilos -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container nav-container">
+            <div class="logo">
+                <img src="img/logo.png" alt="Logo Camila Risso" class="logo-img">
+                <h1>Camila Risso</h1>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#sobre-mi">Sobre mí</a></li>
+                    <li><a href="#cursos">Mis Cursos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section (Principal) -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h2>Pastelería de Autor</h2>
+            <p>El arte de los laminados y la dulzura en cada detalle.</p>
+            <a href="#cursos" class="btn btn-primary">Ver Cursos</a>
+        </div>
+    </section>
+
+    <!-- Sección Sobre Mí -->
+    <section id="sobre-mi" class="section about">
+        <div class="container about-grid">
+            <div class="about-img">
+                <img src="img/CamilaRisso.jpg" alt="Camila Risso Pastelera">
+            </div>
+            <div class="about-text">
+                <h3>Hola, soy Camila</h3>
+                <p>Bienvenida a mi cocina. Soy una apasionada de la pastelería, donde la precisión se encuentra con la creatividad. Mi especialidad son las masas laminadas y la búsqueda constante de la textura perfecta.</p>
+                <p>En este espacio comparto no solo mis creaciones, sino también mis conocimientos para que tú también puedas lograr resultados profesionales desde casa.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel de Fotos -->
+    <section class="section gallery">
+        <div class="container">
+            <h3 class="section-title">Nuestras Creaciones</h3>
+            <div class="carousel-container">
+                <div class="carousel-slide fade" style="display: block;">
+                    <img src="img/croissant.jpg" alt="Croissant">
+                    <div class="caption">Croissant Perfecto</div>
+                </div>
+                <div class="carousel-slide fade">
+                    <img src="img/medialuna.jpg" alt="Medialunas">
+                    <div class="caption">Medialunas de Manteca</div>
+                </div>
+                <div class="carousel-slide fade">
+                    <img src="img/panmasamadre.jpg" alt="Pan de Masa Madre">
+                    <div class="caption">Pan de Masa Madre</div>
+                </div>
+                <!-- Nueva foto agregada -->
+                <div class="carousel-slide fade">
+                    <img src="img/torta.jpg" alt="Torta de Chocolate">
+                    <div class="caption">Torta de Chocolate</div>
+                </div>
+                
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Cursos -->
+    <section id="cursos" class="section courses">
+        <div class="container">
+            <h3 class="section-title">Nuestros Cursos</h3>
+            <p class="section-subtitle">Aprende los secretos del laminado profesional.</p>
+            
+            <div class="courses-grid">
+                <!-- Curso Principiante -->
+                <div class="course-card">
+                    <div class="card-header">
+                        <h4>Principiante</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Ideal para dar tus primeros pasos en el mundo de la pastelería.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Introducción a ingredientes</li>
+                            <li><i class="fas fa-check"></i> Amasado manual</li>
+                            <li><i class="fas fa-check"></i> Medialunas clásicas</li>
+                        </ul>
+                        <a href="https://wa.me/5492494214303?text=Hola%20Cami!%20Quiero%20info%20sobre%20el%20curso%20Principiante" target="_blank" class="btn btn-secondary">Más Info</a>
+                    </div>
+                </div>
+
+                <!-- Curso Avanzado -->
+                <div class="course-card">
+                    <div class="card-header">
+                        <h4>Avanzado</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Perfecciona tu técnica y logra alveolados increíbles.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Uso de masa madre</li>
+                            <li><i class="fas fa-check"></i> Laminado de alta precisión</li>
+                            <li><i class="fas fa-check"></i> Croissants bicolores</li>
+                        </ul>
+                        <a href="https://wa.me/5492494214303?text=Hola%20Cami!%20Quiero%20info%20sobre%20el%20curso%20Avanzado" target="_blank" class="btn btn-secondary">Más Info</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto (Formulario) -->
+    <section id="contacto" class="section contact">
+        <div class="container">
+            <h3 class="section-title">Contacto</h3>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="nombre">Nombre completo:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="consulta">Dejanos tu consulta:</label>
+                    <textarea id="consulta" name="consulta" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <h3>Camila Risso - Pastelería</h3>
+            <div class="social-links">
+                <a href="https://www.instagram.com/camichaspy_cocina/" target="_blank" class="social-btn instagram">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+                <a href="https://wa.me/5492494214303" target="_blank" class="social-btn whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+            <p class="copyright">&copy; 2026 Camila Risso. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
