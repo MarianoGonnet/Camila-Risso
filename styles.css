@@ -145,7 +145,7 @@ ul { list-style: none; }
     z-index: 1;
 }
 
-.hero h2 {
+.hero h1 {
     font-size: 3.5rem;
     margin-bottom: 15px;
 }
