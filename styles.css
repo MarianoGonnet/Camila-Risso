@@ -517,6 +517,7 @@ ul { list-style: none; }
     .hamburger { display: block; }
     .about-grid { grid-template-columns: 1fr; }
     .hero { height: 60vh; } /* Ajuste para que la imagen se vea mejor en móviles */
+    .hero-video { display: none; } /* Ocultar video en celular para evitar errores y usar la imagen de fondo */
     
     /* Ajustes móviles adicionales */
     .hero h2 { font-size: 2.5rem; }
