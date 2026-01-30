@@ -6,6 +6,7 @@
     --white: #ffffff;
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Lato', sans-serif;
+    --font-handwriting: 'Dancing Script', cursive; /* Nueva fuente artesanal */
 }
 
 * {
@@ -124,30 +125,50 @@ ul { list-style: none; }
 /* Hero Section */
 .hero {
     height: 80vh;
-    /* Asegúrate de que esta imagen exista o cambia el nombre */
-    background: url('img/CroissantFamilia.jpeg') no-repeat center center/cover;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: var(--white);
+    overflow: hidden; /* Importante: evita que la imagen se salga al hacer zoom */
+}
+
+/* Video de fondo para el Hero */
+.hero-video {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    object-fit: cover; /* Asegura que el video cubra todo el espacio sin deformarse */
+    z-index: 0;
 }
 
 .hero-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.4);
+    z-index: 1; /* Asegura que la sombra esté sobre la foto */
 }
 
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2; /* Asegura que el texto esté sobre todo */
+    animation: fadeInUp 2s ease-out; /* Efecto de aparición suave */
 }
 
 .hero h2 {
-    font-size: 3.5rem;
+    font-family: var(--font-handwriting); /* Aplicamos la fuente manuscrita */
+    font-size: 4.5rem; /* Un poco más grande para que luzca */
     margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Sombra suave para legibilidad */
+}
+
+/* Animación de aparición para el texto */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* Sobre Mí */
@@ -174,7 +195,7 @@ ul { list-style: none; }
 
 /* Carousel */
 .gallery { background-color: #fff; text-align: center; }
-.section-title { font-size: 2.5rem; margin-bottom: 40px; color: var(--primary); }
+.section-title { font-size: 2.5rem; margin-bottom: 40px; color: var(--primary); text-align: center; }
 
 .carousel-container {
     max-width: 800px;
@@ -185,7 +206,18 @@ ul { list-style: none; }
 }
 
 .carousel-slide { display: none; }
-.carousel-slide img { width: 100%; height: 450px; object-fit: cover; }
+
+.carousel-slide img { 
+    width: 100%; 
+    height: 450px; 
+    object-fit: cover; /* Ajuste para cubrir todo el espacio sin bordes */
+    transition: transform 0.5s ease; /* Transición suave para el efecto */
+}
+
+/* Efectito: Zoom suave al pasar el mouse */
+.carousel-slide img:hover {
+    transform: scale(1.05);
+}
 
 .caption {
     position: absolute;
@@ -216,7 +248,7 @@ ul { list-style: none; }
 .prev { left: 0; border-radius: 0 3px 3px 0; }
 .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
 
-.fade { animation-name: fade; animation-duration: 1.5s; }
+.fade { animation-name: fade; animation-duration: 3s; }
 @keyframes fade { from {opacity: .4} to {opacity: 1} }
 
 /* Cursos */
@@ -483,6 +515,7 @@ ul { list-style: none; }
     .nav-list.active { display: flex; }
     .hamburger { display: block; }
     .about-grid { grid-template-columns: 1fr; }
+    .hero { height: 60vh; } /* Ajuste para que la imagen se vea mejor en móviles */
     
     /* Ajustes móviles adicionales */
     .hero h2 { font-size: 2.5rem; }
@@ -495,5 +528,20 @@ ul { list-style: none; }
     /* Ajustes para página sobre mi detallada */
     .about-detailed-content {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Ajuste específico para el carrusel en la página Sobre Mí */
+.about-img .carousel-slide img {
+    width: 100%;
+    height: 500px; /* Altura fija para evitar que el texto salte */
+    object-fit: cover; /* Ajuste perfecto sin deformar la imagen */
+    box-shadow: 15px 15px 0 var(--primary);
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .about-img .carousel-slide img {
+        height: 400px; /* Altura ajustada para celulares */
     }
 }
