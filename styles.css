@@ -132,6 +132,7 @@ ul { list-style: none; }
     text-align: center;
     color: var(--white);
     overflow: hidden; /* Importante: evita que la imagen se salga al hacer zoom */
+    background: #2c2c2c url('img/CroissantFamilia.jpeg') no-repeat center center/cover; /* Fallback de seguridad */
 }
 
 /* Video de fondo para el Hero */
