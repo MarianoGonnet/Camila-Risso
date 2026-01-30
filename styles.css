@@ -352,10 +352,56 @@ ul { list-style: none; }
 
 /* Footer */
 .footer {
-    background: var(--dark); /* Usamos el marrón oscuro de la marca para mayor armonía */
-    color: var(--white);
+    background: var(--white); /* Fondo claro para que resalte el logo */
+    color: var(--dark);
+    border-top: 5px solid var(--primary); /* Detalle de color superior */
     text-align: center;
     padding: 50px 0;
+}
+.footer-logo-link {
+    display: inline-block;
+    margin-bottom: 30px; /* Más espacio para separar de los links sociales */
+    transition: transform 0.3s ease;
+}
+
+.footer-logo-link:hover {
+    transform: scale(1.05);
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-logo-img {
+    height: 80px;
+    width: auto;
+}
+
+.footer-logo-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.footer-logo-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--primary);
+    letter-spacing: 3px;
+    line-height: 1.1;
+    font-weight: 600;
+}
+
+.footer-logo-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--dark);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 5px;
+    font-weight: 400;
 }
 .social-links {
     display: flex;
@@ -366,9 +412,9 @@ ul { list-style: none; }
 .social-btn {
     padding: 12px 30px;
     border-radius: 50px; /* Diseño redondeado y elegante */
-    border: 1px solid rgba(255,255,255,0.3); /* Borde sutil */
+    border: 1px solid var(--primary);
     background: transparent; /* Fondo transparente */
-    color: var(--white);
+    color: var(--primary);
     font-weight: 400;
     text-transform: uppercase;
     font-size: 0.85rem;
@@ -380,8 +426,8 @@ ul { list-style: none; }
 }
 .social-btn:hover {
     transform: translateY(-3px);
-    background: var(--white); /* Al pasar el mouse se vuelve blanco */
-    color: var(--dark); /* Texto oscuro para contraste */
+    background: var(--primary);
+    color: var(--white);
 }
 
 /* Responsive */
