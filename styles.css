@@ -354,7 +354,7 @@ ul { list-style: none; }
 .footer {
     background: var(--white); /* Fondo claro para que resalte el logo */
     color: var(--dark);
-    border-top: 5px solid var(--primary); /* Detalle de color superior */
+    border-top: 1px solid rgba(0,0,0,0.1); /* Línea suave y delicada */
     text-align: center;
     padding: 50px 0;
 }
