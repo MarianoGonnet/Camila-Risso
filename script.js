@@ -61,7 +61,7 @@ const revealObserver = new IntersectionObserver((entries, observer) => {
     });
 }, {
     root: null,
-    threshold: 0.15 // Se activa cuando el 15% del elemento es visible
+    threshold: 0 // Se activa apenas el elemento entra en pantalla (ideal para secciones largas en móvil)
 });
 
 revealElements.forEach(el => revealObserver.observe(el));

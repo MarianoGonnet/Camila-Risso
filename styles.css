@@ -412,7 +412,7 @@ ul { list-style: none; }
 /* Página Galería (Grid Moderno) */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* Ajustado para que entre bien en celulares pequeños */
     gap: 20px;
     padding: 20px 0;
 }
