@@ -75,6 +75,7 @@ revealElements.forEach(el => revealObserver.observe(el));
 // Lightbox (Galería Pantalla Completa)
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
+const lightboxCaption = document.getElementById('lightbox-caption'); // Referencia al texto
 const closeBtn = document.querySelector('.close-lightbox');
 const galleryImages = document.querySelectorAll('.gallery-item img, .carousel-slide img, .about-img img'); // Selecciona todas las imágenes
 
@@ -83,6 +84,30 @@ if (lightbox && galleryImages.length > 0) {
         img.addEventListener('click', () => {
             lightbox.style.display = "block";
             lightboxImg.src = img.src;
+            
+            // Lógica para obtener el texto
+            let captionText = img.alt; // Por defecto usa el texto alternativo
+
+            // Excepción: Si es la imagen de "Sobre Mí" en el inicio, no mostrar texto
+            if (img.closest('.about-img') && !img.closest('.carousel-slide')) {
+                captionText = "";
+            }
+
+            // 1. Si es de la Galería (tiene un div hermano .gallery-overlay con un p)
+            const overlay = img.nextElementSibling;
+            if (overlay && overlay.classList.contains('gallery-overlay')) {
+                const p = overlay.querySelector('p');
+                if (p) captionText = p.textContent;
+            }
+            // 2. Si es del Carrusel (tiene un div hermano .caption)
+            else if (overlay && overlay.classList.contains('caption')) {
+                captionText = overlay.textContent;
+            }
+
+            if (lightboxCaption) {
+                lightboxCaption.textContent = captionText;
+                lightboxCaption.style.display = captionText ? 'block' : 'none'; // Ocultar si no hay texto
+            }
         });
     });
 
