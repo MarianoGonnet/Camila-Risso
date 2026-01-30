@@ -46,7 +46,13 @@ function startSlideTimer() {
 // Efecto Sticky Header (Achicar menú al hacer scroll)
 window.addEventListener('scroll', function() {
     const header = document.querySelector('.header');
-    header.classList.toggle('scrolled', window.scrollY > 50);
+    
+    // Usamos rangos separados para evitar el parpadeo (efecto eléctrico)
+    if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+    } else if (window.scrollY < 10) {
+        header.classList.remove('scrolled');
+    }
 });
 
 // Animación de aparición al hacer scroll (Reveal)
