@@ -125,7 +125,7 @@ ul { list-style: none; }
 .hero {
     height: 80vh;
     /* Asegúrate de que esta imagen exista o cambia el nombre */
-    background: url('img/panmasamadre.jpg') no-repeat center center/cover;
+    background: url('img/CroissantFamilia.jpeg') no-repeat center center/cover;
     position: relative;
     display: flex;
     align-items: center;
