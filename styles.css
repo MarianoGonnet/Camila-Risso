@@ -99,17 +99,65 @@ ul { list-style: none; }
     font-size: 2.5rem;
     color: var(--primary);
     letter-spacing: 4px;
-    line-height: 2; /* Asegura el centrado vertical perfecto con la imagen */
+    line-height: 1.1; /* Ajuste para que el subtítulo quede cerca */
+    transition: font-size 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--dark);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 5px;
+    font-weight: 400;
 }
 
 .logo-img {
     height: 150px; /* Tamaño equilibrado y elegante */
     width: auto;
+    transition: height 0.3s ease;
+}
+
+/* Estilos Sticky Header (al hacer scroll) */
+.header.scrolled {
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+.header.scrolled .logo-img {
+    height: 90px;
+}
+.header.scrolled .logo h1 {
+    font-size: 1.8rem;
+}
+.header.scrolled .logo-subtitle {
+    font-size: 0.7rem; /* Se achica proporcionalmente */
 }
 
 .nav-list {
     display: flex;
-    gap: 30px;
+    gap: 0; /* Quitamos el gap fijo para usar padding y los separadores */
+    align-items: center;
+}
+
+.nav-list li {
+    position: relative;
+    padding: 0 25px; /* Espacio generoso alrededor de cada ítem */
+}
+
+/* Separador delicado vertical (Efecto degradado y brillo) */
+.nav-list li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 18px; /* Altura sutil, no ocupa todo el alto */
+    background: linear-gradient(to bottom, transparent, var(--primary), transparent); /* Se desvanece en las puntas */
+    box-shadow: 0 0 3px var(--primary); /* Un brillo muy suave (sombreado) */
+    opacity: 0.8;
 }
 
 .nav-list a:hover {
@@ -304,7 +352,7 @@ ul { list-style: none; }
 
 /* Footer */
 .footer {
-    background: #2c2c2c;
+    background: var(--dark); /* Usamos el marrón oscuro de la marca para mayor armonía */
     color: var(--white);
     text-align: center;
     padding: 50px 0;
@@ -316,24 +364,24 @@ ul { list-style: none; }
     margin: 20px 0;
 }
 .social-btn {
-    padding: 10px 20px;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
+    padding: 12px 30px;
+    border-radius: 50px; /* Diseño redondeado y elegante */
+    border: 1px solid rgba(255,255,255,0.3); /* Borde sutil */
+    background: transparent; /* Fondo transparente */
+    color: var(--white);
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
     display: inline-flex;
     align-items: center;
     gap: 10px;
     transition: 0.3s;
 }
 .social-btn:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
-}
-.instagram { 
-    background: #E1306C;
-}
-.whatsapp { 
-    background: #25D366; 
+    transform: translateY(-3px);
+    background: var(--white); /* Al pasar el mouse se vuelve blanco */
+    color: var(--dark); /* Texto oscuro para contraste */
 }
 
 /* Responsive */
@@ -513,6 +561,21 @@ ul { list-style: none; }
         text-align: center;
         padding: 20px 0;
     }
+
+    .nav-list li {
+        padding: 15px 0; /* Más espacio vertical en celular */
+    }
+
+    /* Transformación: El separador se vuelve horizontal en móviles */
+    .nav-list li:not(:last-child)::after {
+        width: 50px; /* Una línea corta y elegante en el centro */
+        height: 1px;
+        top: auto; bottom: 0;
+        left: 50%; right: auto;
+        transform: translateX(-50%);
+        background: linear-gradient(to right, transparent, var(--primary), transparent);
+    }
+
     .nav-list.active { display: flex; }
     .hamburger { display: block; }
     .about-grid { grid-template-columns: 1fr; }
@@ -520,8 +583,9 @@ ul { list-style: none; }
     
     /* Ajustes móviles adicionales */
     .hero h2 { font-size: 2.5rem; }
-    .logo-img { height: 60px; } /* Logo más chico en celular para que entre bien */
-    .logo h1 { font-size: 1.4rem; }
+    .logo-img, .header.scrolled .logo-img { height: 60px; } /* Logo más chico en celular para que entre bien */
+    .logo h1, .header.scrolled .logo h1 { font-size: 1.4rem; }
+    .logo-subtitle, .header.scrolled .logo-subtitle { font-size: 0.6rem; letter-spacing: 1px; } /* Ajuste fino para móvil */
     .carousel-slide img { height: 300px; } /* Altura de fotos ajustada para móvil */
     .section { padding: 50px 0; }
     .contact-form { padding: 0 10px; }
@@ -545,4 +609,40 @@ ul { list-style: none; }
     .about-img .carousel-slide img {
         height: 400px; /* Altura ajustada para celulares */
     }
+}
+
+/* Botón Flotante de WhatsApp */
+.btn-whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25D366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+}
+
+/* Animaciones al hacer Scroll (Reveal) */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
 }

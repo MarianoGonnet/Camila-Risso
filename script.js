@@ -42,3 +42,26 @@ function startSlideTimer() {
         showSlides(slideIndex += 1);
     }, 5000);
 }
+
+// Efecto Sticky Header (Achicar menú al hacer scroll)
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('.header');
+    header.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Animación de aparición al hacer scroll (Reveal)
+const revealElements = document.querySelectorAll('.reveal');
+
+const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); // Solo animar una vez
+        }
+    });
+}, {
+    root: null,
+    threshold: 0.15 // Se activa cuando el 15% del elemento es visible
+});
+
+revealElements.forEach(el => revealObserver.observe(el));
