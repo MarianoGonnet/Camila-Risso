@@ -65,3 +65,30 @@ const revealObserver = new IntersectionObserver((entries, observer) => {
 });
 
 revealElements.forEach(el => revealObserver.observe(el));
+
+// Lightbox (Galería Pantalla Completa)
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const closeBtn = document.querySelector('.close-lightbox');
+const galleryImages = document.querySelectorAll('.gallery-item img, .carousel-slide img, .about-img img'); // Selecciona todas las imágenes
+
+if (lightbox && galleryImages.length > 0) {
+    galleryImages.forEach(img => {
+        img.addEventListener('click', () => {
+            lightbox.style.display = "block";
+            lightboxImg.src = img.src;
+        });
+    });
+
+    // Cerrar con el botón X
+    closeBtn.addEventListener('click', () => {
+        lightbox.style.display = "none";
+    });
+
+    // Cerrar al hacer clic fuera de la imagen
+    lightbox.addEventListener('click', (e) => {
+        if (e.target !== lightboxImg) {
+            lightbox.style.display = "none";
+        }
+    });
+}

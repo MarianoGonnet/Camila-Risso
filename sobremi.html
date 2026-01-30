@@ -49,13 +49,13 @@
                 <div class="about-img">
                     <!-- Carrusel de imágenes Sobre Mí -->
                     <div class="carousel-slide fade">
-                        <img src="img/sobre-mí/camila-bio.jpeg" alt="Camila Risso preparando una galleta">
+                        <img src="img/sobre-mí/camila-bio.jpeg" alt="Camila Risso preparando una galleta" loading="lazy">
                     </div>
                     <div class="carousel-slide fade">
-                        <img src="img/sobre-mí/SobreMi2.jpeg" alt="Camila Risso en la cocina">
+                        <img src="img/sobre-mí/SobreMi2.jpeg" alt="Camila Risso en la cocina" loading="lazy">
                     </div>
                     <div class="carousel-slide fade">
-                        <img src="img/sobre-mí/SobreMi3.png" alt="Detalle de preparación">
+                        <img src="img/sobre-mí/SobreMi3.png" alt="Detalle de preparación" loading="lazy">
                     </div>
                 </div>
                 <div class="about-detailed-text">
@@ -105,6 +105,12 @@
             <p class="copyright">&copy; 2026 Camila Risso. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <!-- Estructura del Lightbox (Oculto) -->
+    <div id="lightbox" class="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
 
     <script src="script.js"></script>
 </body>
