@@ -410,6 +410,7 @@ ul { list-style: none; }
     justify-content: center;
     gap: 20px;
     margin: 20px 0;
+    flex-wrap: wrap; /* Seguridad extra: si no entran, bajan solos */
 }
 .social-btn {
     padding: 12px 30px;
@@ -651,7 +652,7 @@ ul { list-style: none; }
     /* AJUSTE URGENTE: Footer en móviles */
     /* Evita que los botones empujen el ancho de la pantalla */
     .social-links {
-        flex-direction: column; /* Uno debajo del otro */
+        flex-direction: column !important; /* Forzamos que queden uno abajo del otro sí o sí */
         gap: 15px;
         width: 100%;
     }
