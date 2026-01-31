@@ -17,6 +17,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden; /* Seguridad extra para evitar scroll horizontal */
 }
 
 body {
@@ -24,6 +25,7 @@ body {
     color: var(--dark);
     background-color: var(--secondary);
     line-height: 1.6;
+    overflow-x: hidden; /* Evita que la página "baile" hacia los costados en móviles */
 }
 
 h1, h2, h3, h4 {
@@ -605,6 +607,8 @@ ul { list-style: none; }
         flex-direction: column;
         position: absolute;
         top: 60px; left: 0; width: 100%;
+        top: 100%; /* Se pega automáticamente al final del header, sin importar la altura */
+        left: 0; width: 100%;
         background: var(--white);
         text-align: center;
         padding: 20px 0;
@@ -634,6 +638,7 @@ ul { list-style: none; }
     .logo-img, .header.scrolled .logo-img { height: 60px; } /* Logo más chico en celular para que entre bien */
     .logo h1, .header.scrolled .logo h1 { font-size: 1.4rem; }
     .logo-subtitle, .header.scrolled .logo-subtitle { font-size: 0.6rem; letter-spacing: 1px; } /* Ajuste fino para móvil */
+    .about-img img { box-shadow: 8px 8px 0 var(--primary); } /* Sombra más sutil en móvil para que no corte */
     .carousel-slide img { height: 300px; } /* Altura de fotos ajustada para móvil */
     .section { padding: 50px 0; }
     .contact-form { padding: 0 10px; }
@@ -641,6 +646,20 @@ ul { list-style: none; }
     /* Ajustes para página sobre mi detallada */
     .about-detailed-content {
         grid-template-columns: 1fr;
+    }
+
+    /* AJUSTE URGENTE: Footer en móviles */
+    /* Evita que los botones empujen el ancho de la pantalla */
+    .social-links {
+        flex-direction: column; /* Uno debajo del otro */
+        gap: 15px;
+        width: 100%;
+    }
+    .social-btn {
+        width: 100%; /* Ocupan todo el ancho disponible */
+        justify-content: center; /* Texto centrado */
+        max-width: 300px; /* Pero no gigantes */
+        margin: 0 auto; /* Centrados en el contenedor */
     }
 }
 
