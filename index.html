@@ -51,7 +51,7 @@
     <!-- Hero Section (Principal) -->
     <section class="hero">
         <!-- Video de fondo -->
-        <video autoplay muted loop playsinline preload="auto" class="hero-video" poster="img/CroissantFamilia.jpeg">
+        <video autoplay muted loop playsinline preload="auto" class="hero-video">
             <source src="img/videocroissant.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
@@ -190,7 +190,7 @@
                     <input type="hidden" name="_subject" value="Nuevo Testimonio Web Camila Risso">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_next" value="https://www.camilarisso.com/">
+                    <input type="hidden" name="_next" value="https://www.camilarisso.com/?status=success">
                     <input type="text" name="_honey" style="display:none">
 
                     <input type="text" name="nombre" placeholder="Tu Nombre" required>
@@ -219,7 +219,7 @@
                 <input type="hidden" name="_subject" value="Nueva Consulta Web Camila Risso">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="https://www.camilarisso.com/">
+                <input type="hidden" name="_next" value="https://www.camilarisso.com/?status=success">
                 <input type="text" name="_honey" style="display:none">
 
                 <div class="form-group">
@@ -268,6 +268,12 @@
         <span class="close-lightbox">&times;</span>
         <img class="lightbox-content" id="lightbox-img">
         <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
+    <!-- Notificación Toast (Mensaje de éxito) -->
+    <div id="toast" class="toast-notification">
+        <i class="fas fa-check-circle"></i>
+        <span>¡Mensaje enviado con éxito! Muchas gracias.</span>
     </div>
 
     <script src="script.js"></script>

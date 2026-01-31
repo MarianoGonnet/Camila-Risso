@@ -123,3 +123,24 @@ if (lightbox && galleryImages.length > 0) {
         }
     });
 }
+
+// Notificación de formulario enviado (Toast)
+const urlParams = new URLSearchParams(window.location.search);
+const toast = document.getElementById('toast');
+
+if (urlParams.has('status') && urlParams.get('status') === 'success') {
+    if (toast) {
+        // Mostrar notificación con un pequeño delay
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 500);
+
+        // Ocultar después de 5 segundos
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 5000);
+        
+        // Limpiar la URL para que no aparezca al recargar
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+}
