@@ -18,6 +18,7 @@
 html {
     scroll-behavior: smooth;
     overflow-x: hidden; /* Seguridad extra para evitar scroll horizontal */
+    scroll-padding-top: 110px; /* Evita que el menú tape los títulos al hacer clic en links */
 }
 
 body {
@@ -26,6 +27,7 @@ body {
     background-color: var(--secondary);
     line-height: 1.6;
     overflow-x: hidden; /* Evita que la página "baile" hacia los costados en móviles */
+    padding-top: 160px; /* Espacio reservado para que el header fijo no tape el contenido */
 }
 
 h1, h2, h3, h4 {
@@ -79,10 +81,12 @@ ul { list-style: none; }
 .header {
     background-color: var(--white);
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    position: sticky;
+    position: fixed; /* Fijo para que flote y no cause saltos al cambiar de tamaño */
+    width: 100%;
     top: 0;
     z-index: 1000;
     padding: 5px 0;
+    transition: box-shadow 0.2s ease;
 }
 
 .nav-container {
@@ -102,7 +106,7 @@ ul { list-style: none; }
     color: var(--primary);
     letter-spacing: 4px;
     line-height: 1.1; /* Ajuste para que el subtítulo quede cerca */
-    transition: font-size 0.3s ease;
+    transition: font-size 0.2s ease;
     display: flex;
     flex-direction: column;
 }
@@ -120,7 +124,7 @@ ul { list-style: none; }
 .logo-img {
     height: 150px; /* Tamaño equilibrado y elegante */
     width: auto;
-    transition: height 0.3s ease;
+    transition: height 0.2s ease;
 }
 
 /* Estilos Sticky Header (al hacer scroll) */
@@ -662,6 +666,10 @@ ul { list-style: none; }
         max-width: 300px; /* Pero no gigantes */
         margin: 0 auto; /* Centrados en el contenedor */
     }
+
+    /* Ajuste de altura para el header en celulares */
+    body { padding-top: 70px; }
+    html { scroll-padding-top: 80px; }
 }
 
 /* Ajuste específico para el carrusel en la página Sobre Mí */

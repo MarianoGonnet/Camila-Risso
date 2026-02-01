@@ -50,7 +50,7 @@ window.addEventListener('scroll', function() {
     // Usamos rangos separados para evitar el parpadeo (efecto eléctrico)
     if (window.scrollY > 100) {
         header.classList.add('scrolled');
-    } else if (window.scrollY < 10) {
+    } else if (window.scrollY < 80) {
         header.classList.remove('scrolled');
     }
 });
