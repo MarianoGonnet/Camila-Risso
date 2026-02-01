@@ -564,6 +564,28 @@ ul { list-style: none; }
     font-size: 0.9rem;
 }
 
+/* Ocultar testimonios extra por defecto (para evitar salto al cargar) */
+.testimonials-grid .testimonial-card:nth-child(n+4) {
+    display: none;
+}
+
+/* Animación suave al rotar testimonios */
+.testimonial-fade-in {
+    animation: fadeInTestimonial 0.8s ease-out;
+}
+.testimonial-fade-out {
+    animation: fadeOutTestimonial 0.5s ease-out forwards;
+}
+
+@keyframes fadeInTestimonial {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeOutTestimonial {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-10px); }
+}
+
 /* Formulario de Reseñas */
 .review-form-container {
     max-width: 600px;

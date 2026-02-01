@@ -144,3 +144,41 @@ if (urlParams.has('status') && urlParams.get('status') === 'success') {
         window.history.replaceState({}, document.title, window.location.pathname);
     }
 }
+
+// Rotación de Testimonios (Si hay más de 3)
+const testimonials = document.querySelectorAll('.testimonial-card');
+
+if (testimonials.length > 3) {
+    let testimonialIndex = 0;
+    const showCount = 3; // Cantidad a mostrar simultáneamente
+
+    // Iniciar rotación automática cada 7 segundos
+    setInterval(() => {
+        // 1. Identificar los visibles actuales para desvanecerlos
+        for (let i = 0; i < showCount; i++) {
+            let index = (testimonialIndex + i) % testimonials.length;
+            testimonials[index].classList.add('testimonial-fade-out');
+        }
+
+        // 2. Esperar a que termine la animación de salida (500ms) antes de cambiar
+        setTimeout(() => {
+            // Ocultar todos y limpiar clases
+            testimonials.forEach(card => {
+                card.style.display = 'none';
+                card.classList.remove('testimonial-fade-in', 'testimonial-fade-out');
+            });
+
+            // Avanzar índice
+            // Avanzamos de a 3 para renovar todo el bloque (evita que los repetidos parpadeen)
+            testimonialIndex = (testimonialIndex + showCount) % testimonials.length;
+
+            // Mostrar los nuevos con animación de entrada
+            for (let i = 0; i < showCount; i++) {
+                let index = (testimonialIndex + i) % testimonials.length;
+                testimonials[index].classList.add('testimonial-fade-in'); // Agregamos clase antes de mostrar
+                testimonials[index].style.display = 'block';
+            }
+        }, 500); // Coincide con la duración de fadeOutTestimonial en CSS
+
+    }, 7000);
+}
