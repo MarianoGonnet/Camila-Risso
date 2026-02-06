@@ -182,3 +182,117 @@ if (testimonials.length > 3) {
 
     }, 7000);
 }
+
+// --- Lógica del Modal de Presupuesto ---
+const budgetModal = document.getElementById('budget-modal');
+const btnOpenBudget = document.getElementById('btn-open-budget');
+const btnCloseBudget = document.getElementById('btn-close-budget');
+const productsListContainer = document.getElementById('budget-products-list');
+const btnSendWhatsapp = document.getElementById('btn-send-whatsapp');
+
+// Lista de Productos
+const products = [
+    "Croissant", 
+    "Medialunas dulces", 
+    "Medialunas saladas", 
+    "Chipá", 
+    "Pan de molde", 
+    "Pan de masa madre", 
+    "Mini croissant", 
+    "Scones", 
+    "Cookies integrales"
+];
+
+// Objeto para guardar cantidades
+let quantities = {};
+
+// Inicializar Modal
+if (budgetModal && productsListContainer) {
+    // Generar HTML de productos
+    products.forEach(prod => {
+        const isChipa = prod === "Chipá";
+        const step = isChipa ? "0.5" : "1";
+        const label = isChipa ? "<small>(kg)</small>" : "";
+        
+        const row = document.createElement('div');
+        row.classList.add('product-row');
+        row.innerHTML = `
+            <span class="product-name">${prod} ${label}</span>
+            <div class="qty-selector">
+                <button class="qty-btn minus" data-prod="${prod}">-</button>
+                <input type="number" class="qty-input" id="qty-${prod.replace(/\s+/g, '-')}" value="0" min="0" step="${step}" data-prod="${prod}">
+                <button class="qty-btn plus" data-prod="${prod}">+</button>
+            </div>
+        `;
+        productsListContainer.appendChild(row);
+    });
+
+    // Eventos para abrir/cerrar
+    if (btnOpenBudget) {
+        btnOpenBudget.addEventListener('click', (e) => {
+            e.preventDefault();
+            budgetModal.classList.add('active');
+        });
+    }
+
+    if (btnCloseBudget) {
+        btnCloseBudget.addEventListener('click', () => {
+            budgetModal.classList.remove('active');
+        });
+    }
+
+    // Delegación de eventos para botones + y -
+    productsListContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('qty-btn')) {
+            const prod = e.target.getAttribute('data-prod');
+            const input = document.getElementById(`qty-${prod.replace(/\s+/g, '-')}`);
+            const isPlus = e.target.classList.contains('plus');
+            const isChipa = prod === "Chipá";
+            const step = isChipa ? 0.5 : 1;
+            
+            let currentValue = parseFloat(input.value) || 0;
+
+            if (isPlus) {
+                currentValue += step;
+            } else {
+                if (currentValue > 0) currentValue -= step;
+            }
+
+            // Ajuste de decimales para Chipá o enteros para el resto
+            input.value = isChipa ? parseFloat(currentValue.toFixed(2)) : Math.round(currentValue);
+        }
+    });
+
+    // Enviar a WhatsApp
+    if (btnSendWhatsapp) {
+        btnSendWhatsapp.addEventListener('click', () => {
+            let message = "Hola Camila! Quisiera solicitar un presupuesto para:\n\n";
+            let hasItems = false;
+
+            const inputs = productsListContainer.querySelectorAll('.qty-input');
+            
+            inputs.forEach(input => {
+                const qty = parseFloat(input.value);
+                const prod = input.getAttribute('data-prod');
+
+                if (qty > 0) {
+                    if (prod === "Chipá") {
+                        message += `- ${qty} kg de ${prod}\n`;
+                    } else {
+                        message += `- ${qty} x ${prod}\n`;
+                    }
+                    hasItems = true;
+                }
+            });
+
+            if (!hasItems) {
+                alert("Por favor, seleccioná al menos un producto.");
+                return;
+            }
+
+            message += "\nMuchas gracias!";
+            const whatsappUrl = `https://wa.me/5492494214303?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        });
+    }
+}

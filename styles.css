@@ -77,6 +77,17 @@ ul { list-style: none; }
     color: var(--white);
 }
 
+/* Botón Blanco (Para contraste en Hero) */
+.btn-white {
+    background-color: var(--white);
+    color: var(--primary);
+    border: 2px solid var(--white);
+}
+.btn-white:hover {
+    background-color: transparent;
+    color: var(--white);
+}
+
 /* Header */
 .header {
     background-color: var(--white);
@@ -218,6 +229,13 @@ ul { list-style: none; }
     font-size: 4.5rem; /* Un poco más grande para que luzca */
     margin-bottom: 15px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Sombra suave para legibilidad */
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 /* Animación de aparición para el texto */
@@ -819,5 +837,199 @@ ul { list-style: none; }
     }
     .toast-notification.show {
         transform: translate(-50%, 0);
+    }
+}
+
+/* --- MODAL DE PRESUPUESTO (Mobile First) --- */
+
+/* Clase utilitaria para SEO invisible */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2500; /* Por encima de todo */
+    justify-content: center;
+    align-items: flex-end; /* En móvil aparece desde abajo */
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-container {
+    background: var(--secondary);
+    width: 100%;
+    height: 90%; /* Casi pantalla completa en móvil */
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s ease-out;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.modal-header {
+    background: var(--primary);
+    color: var(--white);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px 20px 0 0;
+}
+
+.modal-header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.close-modal-btn {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.product-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(74, 64, 58, 0.1);
+}
+
+.product-name {
+    font-weight: bold;
+    color: var(--dark);
+    font-size: 1rem;
+}
+
+.qty-selector {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.qty-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.qty-btn:active, .qty-btn:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.qty-input {
+    font-size: 1.1rem;
+    font-weight: bold;
+    width: 60px;
+    text-align: center;
+    color: var(--dark);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+    background: var(--white);
+    padding: 5px;
+    -moz-appearance: textfield; /* Firefox */
+}
+
+/* Quitar flechitas del input number en Chrome/Safari */
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.modal-footer {
+    padding: 20px;
+    background: var(--white);
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.btn-whatsapp-modal {
+    width: 100%;
+    background-color: #25D366;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.btn-whatsapp-modal:hover {
+    background-color: #128C7E;
+}
+
+/* Desktop: Modal Centrado */
+@media (min-width: 768px) {
+    .modal-overlay {
+        align-items: center;
+    }
+    
+    .modal-container {
+        width: 500px;
+        height: auto;
+        max-height: 85vh;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        animation: fadeInScale 0.3s ease-out;
+    }
+    
+    .modal-header {
+        border-radius: 15px 15px 0 0;
+    }
+
+    @keyframes fadeInScale {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
     }
 }
