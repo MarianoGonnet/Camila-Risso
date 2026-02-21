@@ -75,18 +75,36 @@ revealElements.forEach(el => revealObserver.observe(el));
 // Lightbox (Galería Pantalla Completa)
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
+const lightboxVideo = document.getElementById('lightbox-video');
 const lightboxCaption = document.getElementById('lightbox-caption'); // Referencia al texto
 const closeBtn = document.querySelector('.close-lightbox');
-const galleryImages = document.querySelectorAll('.gallery-item img, .carousel-slide img, .about-img img'); // Selecciona todas las imágenes
+const galleryImages = document.querySelectorAll('.gallery-item img, .gallery-item video, .carousel-slide img, .about-img img'); // Selecciona todas las imágenes y videos
 
 if (lightbox && galleryImages.length > 0) {
     galleryImages.forEach(img => {
-        img.addEventListener('click', () => {
+        img.addEventListener('click', (e) => {
+            if (img.tagName === 'VIDEO') e.preventDefault(); // Evita comportamientos nativos
             lightbox.style.display = "block";
-            lightboxImg.src = img.src;
+            
+            // Detectar si es video o imagen
+            if (img.tagName === 'VIDEO') {
+                lightboxImg.style.display = 'none';
+                lightboxVideo.style.display = 'block';
+                lightboxVideo.src = img.src;
+                lightboxVideo.muted = true; // Silencio obligatorio
+                lightboxVideo.loop = true; // Bucle infinito
+                lightboxVideo.playsInline = true;
+                lightboxVideo.removeAttribute('controls'); // Quita los controles para que no puedan activar audio
+                lightboxVideo.play();
+            } else {
+                lightboxVideo.style.display = 'none';
+                lightboxVideo.pause();
+                lightboxImg.style.display = 'block';
+                lightboxImg.src = img.src;
+            }
             
             // Lógica para obtener el texto
-            let captionText = img.alt; // Por defecto usa el texto alternativo
+            let captionText = img.getAttribute('alt') || ""; 
 
             // Excepción: Si es la imagen de "Sobre Mí" en el inicio, no mostrar texto
             if (img.closest('.about-img') && !img.closest('.carousel-slide')) {
@@ -114,12 +132,14 @@ if (lightbox && galleryImages.length > 0) {
     // Cerrar con el botón X
     closeBtn.addEventListener('click', () => {
         lightbox.style.display = "none";
+        if (lightboxVideo) { lightboxVideo.pause(); lightboxVideo.currentTime = 0; }
     });
 
     // Cerrar al hacer clic fuera de la imagen
     lightbox.addEventListener('click', (e) => {
-        if (e.target !== lightboxImg) {
+        if (e.target !== lightboxImg && e.target !== lightboxVideo) {
             lightbox.style.display = "none";
+            if (lightboxVideo) { lightboxVideo.pause(); lightboxVideo.currentTime = 0; }
         }
     });
 }
