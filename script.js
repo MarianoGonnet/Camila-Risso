@@ -220,7 +220,8 @@ const products = [
     "Pan de masa madre", 
     "Mini croissant", 
     "Scones", 
-    "Cookies integrales"
+    "Cookies integrales",
+    "Cookies con chips de chocolate"
 ];
 
 // Objeto para guardar cantidades
