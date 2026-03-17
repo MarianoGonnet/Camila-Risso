@@ -21,7 +21,7 @@
     <!-- Iconos para redes sociales -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Hoja de estilos -->
-    <link rel="stylesheet" href="styles.css?v=2.4">
+    <link rel="stylesheet" href="styles.css?v=2.5">
 
 </head>
 <body>
@@ -77,6 +77,72 @@
                 <p>Bienvenida a mi cocina. Soy una apasionada de la pastelería, donde la precisión se encuentra con la creatividad. Mi especialidad son las masas laminadas y la búsqueda constante de la textura perfecta.</p>
                 <p>Descubre más sobre mi viaje en el mundo de la pastelería y cómo puedes empezar el tuyo.</p>
                 <a href="sobremi.html" class="btn btn-secondary">Leer más sobre mí</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Especial Pascuas -->
+    <section id="especial-pascuas" class="section reveal">
+        <div class="container">
+            <h3 class="section-title">Especial de Pascuas</h3>
+            <div class="easter-grid">
+                <div class="easter-media">
+                    <!-- Video de la Rosca (Autoplay silencioso) -->
+                    <!-- Asegurate de nombrar tu archivo como video-rosca.mp4 dentro de la carpeta img/roscas/ -->
+                    <video src="img/roscas/video-rosca.mp4" class="easter-video" muted loop playsinline autoplay poster="img/roscas/rosca-poster.webp"></video>
+                    <!-- Nuevo Carrusel de Roscas (Debajo del video) -->
+                    <div class="easter-carousel-container">
+                        <div class="easter-slide fade" style="display: block;">
+                            <img src="img/roscas/pascuas-tandil.webp" alt="Detalle de masa brioche artesanal en Tandil" loading="lazy">
+                        </div>
+                        <div class="easter-slide fade">
+                            <img src="img/roscas/rosca-pascua-tandil.webp" alt="Roscas de Pascua decoradas" loading="lazy">
+                        </div>
+                        <div class="easter-slide fade">
+                            <img src="img/roscas/rosca-poster.webp" alt="Roscas de Pascua en Tandil" loading="lazy">
+                        </div>
+                         <div class="easter-slide fade">
+                            <img src="img/roscas/chocoNutellaAve.webp" alt="Chocolate, Nutella y Avellanas" loading="lazy">
+                        </div>
+                        <div class="easter-slide fade">
+                            <img src="img/roscas/mokaYnuez.webp" alt="Moka y nuez" loading="lazy">
+                        </div>
+                        <div class="easter-slide fade">
+                            <img src="img/roscas/pistachos.webp" alt="Rosca de pascua sabor pistacho y arándanos" loading="lazy">
+                        </div>
+
+                                            
+                        <!-- Controles del carrusel de Pascuas -->
+                        <a class="prev-easter" onclick="plusEasterSlides(-1)">&#10094;</a>
+                        <a class="next-easter" onclick="plusEasterSlides(1)">&#10095;</a>
+                    </div>
+                </div>
+                <div class="easter-text">
+                    <h4>Roscas de Pascua de Autor en Tandil</h4>
+                    <p>Llega la época más dulce del año. Celebramos con nuestras roscas artesanales, hechas con masa brioche suave y combinaciones únicas:</p>
+                    <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 15px; margin-top: 10px;">
+                        <li><strong>Crema moka y nuez.</strong></li>
+                        <li><strong>Choco, Nutella y avellanas.</strong></li>
+                        <li><strong>Choco blanco, pistacho y arándanos.</strong></li>
+                    </ul>
+                    <p>Una tradición reinventada para que compartas en familia. Hacé tu pedido en <strong>Tandil</strong>.</p>
+                    
+                    <!-- Botón y Contenido de Receta -->
+                    <div class="recipe-collapsible">
+                        <button class="btn btn-secondary btn-recipe">Ver Receta</button>
+                        <div class="recipe-content">
+                            <h5>Receta Rosca Clásica (Para 2 roscas)</h5>
+                            <ul>
+                                <li><strong>Fermento:</strong> 150g harina, 150cc leche tibia, 30g levadura, 1 cda miel.</li>
+                                <li><strong>Masa:</strong> 350g harina 0000, 100g azúcar, 2 huevos, 80g manteca pomada, ralladura de limón, esencia de vainilla.</li>
+                                <li><strong>Decoración (clásica):</strong> Crema pastelera, cerezas, azúcar granulada.</li>
+                            </ul>
+                            <p style="font-size: 0.9rem; margin-top: 10px;"><em>Tip: El secreto es el tiempo de leudado. ¡Paciencia!</em></p>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/5492494214303?text=Hola%20Camila!%20Quisiera%20reservar%20una%20Rosca%20de%20Pascua." target="_blank" class="btn btn-primary" style="margin-top: 20px;"><i class="fab fa-whatsapp"></i> Reservar la Mía</a>
+                </div>
             </div>
         </div>
     </section>
@@ -289,6 +355,9 @@
     <!-- Estructura del Lightbox (Oculto) -->
     <div id="lightbox" class="lightbox">
         <span class="close-lightbox">&times;</span>
+        <!-- Flechas de navegación -->
+        <a class="lightbox-prev">&#10094;</a>
+        <a class="lightbox-next">&#10095;</a>
         <img class="lightbox-content" id="lightbox-img">
         <video class="lightbox-content" id="lightbox-video" muted loop playsinline style="display:none;"></video>
         <div id="lightbox-caption" class="lightbox-caption"></div>
@@ -319,6 +388,6 @@
         </div>
     </div>
 
-    <script src="script.js?v=2.4"></script>
+    <script src="script.js?v=2.5"></script>
 </body>
 </html>

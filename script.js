@@ -43,6 +43,36 @@ function startSlideTimer() {
     }, 5000);
 }
 
+// --- Carrusel Independiente para Pascuas ---
+let easterIndex = 1;
+
+// Configuración inicial: Poner las imágenes como fondo borroso automáticamente
+const easterSlides = document.querySelectorAll('.easter-slide');
+easterSlides.forEach(slide => {
+    const img = slide.querySelector('img');
+    if (img) {
+        slide.style.setProperty('--bg-image', `url(${img.src})`);
+    }
+});
+
+showEasterSlides(easterIndex);
+
+function plusEasterSlides(n) {
+    showEasterSlides(easterIndex += n);
+}
+
+function showEasterSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("easter-slide");
+    if (slides.length === 0) return;
+    if (n > slides.length) {easterIndex = 1}
+    if (n < 1) {easterIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slides[easterIndex-1].style.display = "block";
+}
+
 // Efecto Sticky Header (Achicar menú al hacer scroll)
 window.addEventListener('scroll', function() {
     const header = document.querySelector('.header');
@@ -72,62 +102,133 @@ const revealObserver = new IntersectionObserver((entries, observer) => {
 
 revealElements.forEach(el => revealObserver.observe(el));
 
+// Botón Ver Receta (Especial Pascuas)
+const btnRecipe = document.querySelector('.btn-recipe');
+const recipeContent = document.querySelector('.recipe-content');
+
+if (btnRecipe && recipeContent) {
+    btnRecipe.addEventListener('click', () => {
+        recipeContent.classList.toggle('visible');
+        if (recipeContent.classList.contains('visible')) {
+            btnRecipe.textContent = 'Ocultar Receta';
+        } else {
+            btnRecipe.textContent = 'Ver Receta';
+        }
+    });
+}
+
 // Lightbox (Galería Pantalla Completa)
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const lightboxVideo = document.getElementById('lightbox-video');
 const lightboxCaption = document.getElementById('lightbox-caption'); // Referencia al texto
 const closeBtn = document.querySelector('.close-lightbox');
-const galleryImages = document.querySelectorAll('.gallery-item img, .gallery-item video, .carousel-slide img, .about-img img'); // Selecciona todas las imágenes y videos
+const galleryImages = document.querySelectorAll('.gallery-item img, .gallery-item video, .carousel-slide img, .about-img img, .easter-media video, .easter-slide img'); // Actualizado a easter-slide
+const lightboxPrev = document.querySelector('.lightbox-prev');
+const lightboxNext = document.querySelector('.lightbox-next');
+
+let currentLightboxIndex = 0;
+let currentGalleryGroup = []; // Lista temporal para el grupo de imágenes actual
+
+// Función para actualizar el contenido del Lightbox
+function updateLightboxContent(img) {
+    // Detectar si es video o imagen
+    if (img.tagName === 'VIDEO') {
+        lightboxImg.style.display = 'none';
+        lightboxVideo.style.display = 'block';
+        lightboxVideo.src = img.src;
+        lightboxVideo.muted = true; // Silencio obligatorio
+        lightboxVideo.loop = true; // Bucle infinito
+        lightboxVideo.playsInline = true;
+        lightboxVideo.removeAttribute('controls'); 
+        lightboxVideo.play();
+    } else {
+        lightboxVideo.style.display = 'none';
+        lightboxVideo.pause();
+        lightboxImg.style.display = 'block';
+        lightboxImg.src = img.src;
+    }
+    
+    // Lógica para obtener el texto (Caption)
+    let captionText = img.getAttribute('alt') || ""; 
+
+    // Excepción: Si es la imagen de "Sobre Mí" en el inicio, no mostrar texto
+    if (img.closest('.about-img') && !img.closest('.carousel-slide')) {
+        captionText = "";
+    }
+
+    // 1. Si es de la Galería (tiene un div hermano .gallery-overlay con un p)
+    const overlay = img.nextElementSibling;
+    if (overlay && overlay.classList.contains('gallery-overlay')) {
+        const p = overlay.querySelector('p');
+        if (p) captionText = p.textContent;
+    }
+    // 2. Si es del Carrusel (tiene un div hermano .caption)
+    else if (overlay && overlay.classList.contains('caption')) {
+        captionText = overlay.textContent;
+    }
+
+    if (lightboxCaption) {
+        lightboxCaption.textContent = captionText;
+        lightboxCaption.style.display = captionText ? 'block' : 'none'; 
+    }
+}
+
+// Función para cambiar de imagen (Next/Prev)
+function changeLightboxImage(n) {
+    currentLightboxIndex += n;
+    // Bucle infinito (si llega al final, vuelve al principio)
+    if (currentLightboxIndex >= currentGalleryGroup.length) currentLightboxIndex = 0;
+    if (currentLightboxIndex < 0) currentLightboxIndex = currentGalleryGroup.length - 1;
+    
+    updateLightboxContent(currentGalleryGroup[currentLightboxIndex]);
+}
 
 if (lightbox && galleryImages.length > 0) {
-    galleryImages.forEach(img => {
+    galleryImages.forEach((img, index) => {
         img.addEventListener('click', (e) => {
             if (img.tagName === 'VIDEO') e.preventDefault(); // Evita comportamientos nativos
             lightbox.style.display = "block";
             
-            // Detectar si es video o imagen
-            if (img.tagName === 'VIDEO') {
-                lightboxImg.style.display = 'none';
-                lightboxVideo.style.display = 'block';
-                lightboxVideo.src = img.src;
-                lightboxVideo.muted = true; // Silencio obligatorio
-                lightboxVideo.loop = true; // Bucle infinito
-                lightboxVideo.playsInline = true;
-                lightboxVideo.removeAttribute('controls'); // Quita los controles para que no puedan activar audio
-                lightboxVideo.play();
+            // --- Lógica de Agrupación ---
+            // Detectamos en qué sección está la imagen para crear un grupo aislado
+            if (img.closest('.easter-grid')) {
+                // Grupo Pascuas (Video + Fotos Carrusel)
+                currentGalleryGroup = Array.from(document.querySelectorAll('.easter-media video, .easter-slide img'));
+            } else if (img.closest('.carousel-container')) {
+                // Grupo Nuestras Creaciones (Carrusel Principal)
+                currentGalleryGroup = Array.from(document.querySelectorAll('.carousel-container .carousel-slide img'));
+            } else if (img.closest('.gallery-grid')) {
+                // Grupo Página Galería
+                currentGalleryGroup = Array.from(document.querySelectorAll('.gallery-grid .gallery-item img, .gallery-grid .gallery-item video'));
+            } else if (img.closest('.about-img')) {
+                // Grupo Sobre Mí
+                currentGalleryGroup = Array.from(document.querySelectorAll('.about-img img'));
             } else {
-                lightboxVideo.style.display = 'none';
-                lightboxVideo.pause();
-                lightboxImg.style.display = 'block';
-                lightboxImg.src = img.src;
+                // Fallback (por si acaso)
+                currentGalleryGroup = [img];
             }
+
+            // Buscamos el índice de la imagen clickeada DENTRO de su grupo específico
+            currentLightboxIndex = currentGalleryGroup.indexOf(img);
             
-            // Lógica para obtener el texto
-            let captionText = img.getAttribute('alt') || ""; 
-
-            // Excepción: Si es la imagen de "Sobre Mí" en el inicio, no mostrar texto
-            if (img.closest('.about-img') && !img.closest('.carousel-slide')) {
-                captionText = "";
-            }
-
-            // 1. Si es de la Galería (tiene un div hermano .gallery-overlay con un p)
-            const overlay = img.nextElementSibling;
-            if (overlay && overlay.classList.contains('gallery-overlay')) {
-                const p = overlay.querySelector('p');
-                if (p) captionText = p.textContent;
-            }
-            // 2. Si es del Carrusel (tiene un div hermano .caption)
-            else if (overlay && overlay.classList.contains('caption')) {
-                captionText = overlay.textContent;
-            }
-
-            if (lightboxCaption) {
-                lightboxCaption.textContent = captionText;
-                lightboxCaption.style.display = captionText ? 'block' : 'none'; // Ocultar si no hay texto
-            }
+            updateLightboxContent(img);
         });
     });
+
+    // Eventos para botones Next / Prev
+    if (lightboxPrev) {
+        lightboxPrev.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evita que se cierre el lightbox al hacer clic
+            changeLightboxImage(-1);
+        });
+    }
+    if (lightboxNext) {
+        lightboxNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            changeLightboxImage(1);
+        });
+    }
 
     // Cerrar con el botón X
     closeBtn.addEventListener('click', () => {
@@ -137,7 +238,7 @@ if (lightbox && galleryImages.length > 0) {
 
     // Cerrar al hacer clic fuera de la imagen
     lightbox.addEventListener('click', (e) => {
-        if (e.target !== lightboxImg && e.target !== lightboxVideo) {
+        if (e.target !== lightboxImg && e.target !== lightboxVideo && e.target !== lightboxPrev && e.target !== lightboxNext) {
             lightbox.style.display = "none";
             if (lightboxVideo) { lightboxVideo.pause(); lightboxVideo.currentTime = 0; }
         }
