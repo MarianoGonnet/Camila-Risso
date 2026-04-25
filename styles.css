@@ -366,6 +366,61 @@ ul { list-style: none; }
     margin-bottom: 15px;
 }
 
+/* Estado Cerrado — Edición Especial */
+.edition-subtitle {
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--dark);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: -25px;
+    margin-bottom: 40px;
+    opacity: 0.65;
+}
+
+.edition-badge {
+    display: inline-block;
+    background-color: #f0e6d3;
+    color: var(--primary);
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: 1px solid var(--primary);
+    letter-spacing: 1px;
+    opacity: 1;
+}
+
+.edition-closed-cta {
+    margin-top: 25px;
+    padding: 18px 20px;
+    background: rgba(198, 142, 104, 0.08);
+    border-radius: 12px;
+    border-left: 3px solid var(--primary);
+}
+
+.edition-closed-text {
+    font-size: 0.95rem;
+    color: var(--dark);
+    margin: 0 0 15px;
+    opacity: 0.8;
+}
+
+.btn-notify {
+    background-color: #25D366;
+    color: var(--white);
+    border: 2px solid #25D366;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-notify:hover {
+    background-color: transparent;
+    color: #25D366;
+}
+
 /* Receta Desplegable */
 .recipe-collapsible {
     margin: 25px 0;
