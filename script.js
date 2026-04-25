@@ -211,7 +211,12 @@ if (lightbox && galleryImages.length > 0) {
 
             // Buscamos el índice de la imagen clickeada DENTRO de su grupo específico
             currentLightboxIndex = currentGalleryGroup.indexOf(img);
-            
+
+            // Ocultar flechas si hay una sola imagen en el grupo
+            const showArrows = currentGalleryGroup.length > 1;
+            if (lightboxPrev) lightboxPrev.style.display = showArrows ? '' : 'none';
+            if (lightboxNext) lightboxNext.style.display = showArrows ? '' : 'none';
+
             updateLightboxContent(img);
         });
     });
