@@ -856,7 +856,8 @@ ul { list-style: none; }
     .nav-list.active { display: flex; }
     .hamburger { display: block; }
     .about-grid { grid-template-columns: 1fr; }
-    .hero { height: 60vh; background-image: none; } /* Sin imagen de fondo para evitar parpadeo */
+    .hero { height: 60vh; }
+    .hero-video { display: none; } /* En mobile se usa la imagen de fondo en lugar del video */
     
     /* Ajustes móviles adicionales */
     .hero h2 { font-size: 2.5rem; }
